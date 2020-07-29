@@ -55,16 +55,15 @@ repositories {
     }
 }
 
-test {
-    useJUnitPlatform()
-}
-
 testSets {
     testInt
 }
 
 check.dependsOn testInt
 
+tasks.withType(Test) {
+    useJUnitPlatform()
+}
 
 compileGroovy {
     dependsOn 'compileKotlin'
@@ -85,8 +84,8 @@ dependencies {
     components.all(JacksonPlatformRule)
     components.all(KotlinPlatformRule)
 
-    implementation 'org.codehaus.groovy:groovy:2.5.12'
-    implementation 'org.codehaus.groovy:groovy-nio:2.5.12'
+    implementation 'org.codehaus.groovy:groovy:3.0.5'
+    implementation 'org.codehaus.groovy:groovy-nio:3.0.5'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
     implementation "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion"
 
@@ -125,11 +124,11 @@ dependencies {
     testRuntimeOnly ("org.junit.jupiter:junit-jupiter-engine:5.6.2")
     testRuntimeOnly ("org.junit.vintage:junit-vintage-engine:5.6.2")
 
-    testImplementation ('org.spockframework:spock-core:2.0-M2-groovy-2.5') {
+    testImplementation ('org.spockframework:spock-core:2.0-M3-groovy-3.0') {
         exclude group: 'org.codehaus.groovy'
         exclude group: 'junit'
     }
-    testImplementation ('org.spockframework:spock-junit4:2.0-M2-groovy-2.5') {
+    testImplementation ('org.spockframework:spock-junit4:2.0-M3-groovy-3.0') {
         exclude group: 'org.codehaus.groovy'
         exclude group: 'junit'
     }
